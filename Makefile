@@ -1,0 +1,2 @@
+init:
+	pre-commit install
