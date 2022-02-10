@@ -1,11 +1,11 @@
 import random
 
-from flask import Flask
+from fastapi import FastAPI
 
-app = Flask(__name__)
+app = FastAPI()
 
 
-@app.route("/")
+@app.get("/")
 def index():
     welcome_messages = [
         "🐕🐕🐕  zarejestruj się i spaceruj jusz teraz!!1 🐕🐕🐕",
