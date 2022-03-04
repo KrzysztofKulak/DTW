@@ -1,14 +1,9 @@
 FROM python:3.10-slim
 
-RUN mkdir app
-WORKDIR /app
+WORKDIR /code
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+COPY ./requirements.txt /code/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+COPY ./ /code/app
 
-COPY . .
-
-ENV FLASK_APP=app
-ENV FLASK_ENV=development
-
-CMD [ "flask", "run", "--host=0.0.0.0"]
+CMD ["uvicorn", "app.app:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
